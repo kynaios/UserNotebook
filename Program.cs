@@ -1,5 +1,11 @@
 var builder = WebApplication.CreateBuilder(args);
 
+// Load environment variables (copy .env file)
+var configuration = new ConfigurationBuilder()
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+    .AddEnvironmentVariables()
+    .Build();
 // Add services to the container.
 
 builder.Services.AddControllers();
