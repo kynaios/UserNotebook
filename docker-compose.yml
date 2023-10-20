@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  postgres:
+    container_name: user_notebook_db
+    image: postgres:15.4-alpine3.18
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: user_notebook
+      POSTGRES_USER: ${USER_NOTEBOOK_DATABASE_USER}
+      POSTGRES_PASSWORD: ${USER_NOTEBOOK_DATABASE_PASSWORD}
