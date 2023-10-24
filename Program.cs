@@ -14,6 +14,13 @@ var configuration = new ConfigurationBuilder()
     .AddEnvironmentVariables()
     .Build();
 
+var databaseUser = configuration["USER_NOTEBOOK_DATABASE_USER"];
+var databasePassword = configuration["USER_NOTEBOOK_DATABASE_PASSWORD"];
+    
+var dataSourceBuilder =
+    new NpgsqlDataSourceBuilder($"Host=localhost; Database=user_notebook; Username={databaseUser}; Password={databasePassword}");
+var dataSource = dataSourceBuilder.Build();
+
 // Add services to the container.
 // AutoMapper
 var mapper = new MapperConfiguration(c =>
@@ -46,13 +53,6 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<UserContext>(options =>
 {
-    var databaseUser = configuration["USER_NOTEBOOK_DATABASE_USER"];
-    var databasePassword = configuration["USER_NOTEBOOK_DATABASE_PASSWORD"];
-    
-    var dataSourceBuilder =
-        new NpgsqlDataSourceBuilder($"Host=localhost; Database=user_notebook; Username={databaseUser}; Password={databasePassword}");
-    var dataSource = dataSourceBuilder.Build();
-    
     options.UseNpgsql(dataSource);
 });
 
@@ -66,6 +66,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors();
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
