@@ -2,7 +2,7 @@
 	import * as Table from '$lib/components/ui/table';
 	import Check from '../components/icons/Check.svelte';
 	import Delete from '../components/icons/Delete.svelte';
-	import Edit from '../components/icons/Edit.svelte';
+	import EditDialog from '../components/EditDialog.svelte';
 	import View from '../components/icons/View.svelte';
 
 	export let data;
@@ -32,7 +32,11 @@
 				<Table.Cell>{user.name}</Table.Cell>
 				<Table.Cell>{user.surname}</Table.Cell>
 				<Table.Cell>{user.birthDay}</Table.Cell>
-				<Table.Cell>{user.sex}</Table.Cell>
+				{#if user.sex === 0}
+					<Table.Cell>Male</Table.Cell>
+				{:else}
+					<Table.Cell>Female</Table.Cell>
+				{/if}
 				{#if user.bagWeight !== null}
 					<Table.Cell>{user.bagWeight}</Table.Cell>
 				{:else}
@@ -62,7 +66,13 @@
 				{:else}
 					<Table.Cell />
 				{/if}
-				<Table.Cell class="flex gap-4"><View /> <Edit /> <Delete /></Table.Cell>
+				<Table.Cell class="flex gap-4">
+					<View />
+					<EditDialog bind:user />
+					<button>
+						<Delete />
+					</button>
+				</Table.Cell>
 			</Table.Row>
 		{/each}
 	</Table.Body>
