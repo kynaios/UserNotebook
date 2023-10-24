@@ -9,4 +9,5 @@ public interface IUser
     public string Surname { get; set; }
     public DateOnly BirthDay { get; set; }
     public Sex Sex { get; set; }
+    public String Discriminator { get; set; }
 }

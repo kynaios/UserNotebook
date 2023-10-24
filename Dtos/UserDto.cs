@@ -20,4 +20,6 @@ public class UserDto
     
     [Required]
     public Sex Sex { get; set; }
+    
+    public String Discriminator { get; set; }
 }
