@@ -7,7 +7,9 @@ namespace UserNotebook.Context;
 
 public class UserContext : DbContext
 {
-    private DbSet<User> Users { get; set; }
+    public DbSet<User> Users { get; set; }
+    public DbSet<Adult> Adults { get; set; }
+    public DbSet<Kid> Kids { get; set; }
     
     public UserContext(DbContextOptions options) : base(options)
     {
