@@ -43,9 +43,14 @@ public class KidController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public ActionResult Create([FromBody] KidDto dto)
     {
-        _service.Save(dto);
+        if (ModelState.IsValid)
+        {
+            _service.Save(dto);
         
-        return Ok();
+            return Ok();
+        }
+
+        return BadRequest(ModelState);
     }
     
     [HttpPut]
@@ -54,9 +59,14 @@ public class KidController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public ActionResult Update([FromBody] KidDto dto)
     {
-        _service.Update(dto);
+        if (ModelState.IsValid)
+        {
+            _service.Update(dto);
         
-        return Ok();
+            return Ok();
+        }
+
+        return BadRequest(ModelState);
     }
     
     [HttpDelete]

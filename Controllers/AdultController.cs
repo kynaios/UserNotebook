@@ -43,9 +43,14 @@ public class AdultController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public ActionResult Create([FromBody] AdultDto dto)
     {
-        _service.Save(dto);
+        if (ModelState.IsValid)
+        {
+            _service.Save(dto);
         
-        return Ok("success");
+            return Ok();
+        }
+
+        return BadRequest(ModelState);
     }
     
     [HttpPut]
@@ -54,9 +59,14 @@ public class AdultController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public ActionResult Update([FromBody] AdultDto dto)
     {
-        _service.Update(dto);
+        if (ModelState.IsValid)
+        {
+            _service.Update(dto);
         
-        return Ok();
+            return Ok();
+        }
+
+        return BadRequest(ModelState);
     }
     
     [HttpDelete]
