@@ -2,7 +2,7 @@ using UserNotebook.Types;
 
 namespace UserNotebook.Models;
 
-public class User
+public class User : IUser
 {
     public Guid Id { get; set; }
     public string Name { get; set; }
