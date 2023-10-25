@@ -8,22 +8,16 @@
 	import Edit from '../components/icons/Edit.svelte';
 	import UserAdd from '../components/icons/UserAdd.svelte';
 	import Export from '../components/icons/Export.svelte';
-	import { Button } from '$lib/components/ui/button';
 	import Papa from 'papaparse';
 
 	export let data;
 
 	const users = [...data.adults, ...data.kids];
 
-	function exportUsers() {
-		const options = {
-			delimiter: ';',
-			excelBOM: true
-		};
-
-		console.log();
-
-		const csvContent = Papa.unparse(users);
+	async function exportUsers() {
+		const req = await fetch('http://localhost:5239/Raport/all');
+		const raport = await req.json();
+		const csvContent = Papa.unparse(raport);
 
 		const blob = new Blob([csvContent], { type: 'text/csv' });
 		const url = window.URL.createObjectURL(blob);
@@ -31,7 +25,7 @@
 		a.style.display = 'none';
 		a.href = url;
 		const timestamp = new Date().toISOString().replace(/[-T:]/g, '').split('.')[0];
-		a.download = `Date with seconds ${timestamp}.csv`;
+		a.download = `${timestamp}.csv`;
 
 		document.body.appendChild(a);
 		a.click();
