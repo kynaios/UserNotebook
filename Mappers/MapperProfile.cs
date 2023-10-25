@@ -1,4 +1,5 @@
 using AutoMapper;
+using UserNotebook.Dtos;
 using UserNotebook.Models;
 
 namespace UserNotebook.Mappers;
@@ -14,5 +15,9 @@ public class MapperProfile : Profile
         // Kid
         CreateMap<Kid, KidDto>();
         CreateMap<KidDto, Kid>();
+        
+        // Raports
+        CreateMap<Raport, RaportDto>();
+        CreateMap<RaportDto, Raport>();
     }
 }
