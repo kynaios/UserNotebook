@@ -2,7 +2,7 @@ using UserNotebook.Models;
 
 namespace UserNotebook;
 
-public interface IRaportRepository
+public interface IReportRepository
 {
-    public IEnumerable<Raport> FindAll();
+    public IEnumerable<Report> FindAll();
 }

@@ -19,7 +19,7 @@
 	</div>
 	<div class="grid grid-cols-4 items-center gap-4">
 		<Label class="text-right">Birthday</Label>
-		<span class="col-span-3">{user.birthDay} </span>
+		<span class="col-span-3">{user.birthday} </span>
 	</div>
 	<div class="grid grid-cols-4 items-center gap-4">
 		<Label class="text-right">Sex</Label>

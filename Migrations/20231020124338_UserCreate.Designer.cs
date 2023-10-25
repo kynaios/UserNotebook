@@ -31,7 +31,7 @@ namespace UserNotebook.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<DateOnly>("BirthDay")
+                    b.Property<DateOnly>("Birthday")
                         .HasColumnType("date");
 
                     b.Property<string>("Name")

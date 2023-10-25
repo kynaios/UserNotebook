@@ -2,11 +2,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace UserNotebook.Models;
 
-public class Raport
+public class Report
 {
     public string Name { get; set; }
     public string Surname { get; set; }
-    public DateOnly BirthDay { get; set; }
+    public DateOnly Birthday { get; set; }
     
     [Column("sex_name")]
     public string Sex_Name { get; set; }

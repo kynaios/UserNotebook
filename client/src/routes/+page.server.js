@@ -34,7 +34,7 @@ export const actions = {
 		const discriminator = data.get('discriminator');
 		const name = data.get('name');
 		const surname = data.get('surname');
-		const birthDay = data.get('birthDay');
+		const birthday = data.get('birthday');
 		const sex = Number.parseInt(data.get('sex'));
 		const isEmployed = data.get('isEmployed') ? true : false;
 		const companyName = isEmployed ? data.get('companyName') : '';
@@ -46,7 +46,7 @@ export const actions = {
 			id,
 			name,
 			surname,
-			birthDay,
+			birthday,
 			sex,
 			isEmployed,
 			companyName,

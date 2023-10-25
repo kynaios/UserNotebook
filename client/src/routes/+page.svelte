@@ -15,9 +15,9 @@
 	const users = [...data.adults, ...data.kids];
 
 	async function exportUsers() {
-		const req = await fetch('http://localhost:5239/Raport/all');
-		const raport = await req.json();
-		const csvContent = Papa.unparse(raport);
+		const req = await fetch('http://localhost:5239/Report/all');
+		const report = await req.json();
+		const csvContent = Papa.unparse(report);
 
 		const blob = new Blob([csvContent], { type: 'text/csv' });
 		const url = window.URL.createObjectURL(blob);
@@ -61,7 +61,7 @@
 			<Table.Row>
 				<Table.Cell>{user.name}</Table.Cell>
 				<Table.Cell>{user.surname}</Table.Cell>
-				<Table.Cell>{user.birthDay}</Table.Cell>
+				<Table.Cell>{user.birthday}</Table.Cell>
 				{#if user.sex === 0}
 					<Table.Cell>Male</Table.Cell>
 				{:else}

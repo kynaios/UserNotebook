@@ -12,8 +12,8 @@ using UserNotebook.Context;
 namespace UserNotebook.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20231025133551_CreateRaportView")]
-    partial class CreateRaportView
+    [Migration("20231025133551_CreateReportView")]
+    partial class CreateReportView
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,7 +31,7 @@ namespace UserNotebook.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<DateOnly>("BirthDay")
+                    b.Property<DateOnly>("Birthday")
                         .HasColumnType("date");
 
                     b.Property<string>("Discriminator")

@@ -5,11 +5,11 @@ namespace UserNotebook.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class RaportController : ControllerBase
+public class ReportController : ControllerBase
 {
-    private readonly IRaportService _service;
+    private readonly IReportService _service;
 
-    public RaportController(IRaportService service)
+    public ReportController(IReportService service)
     {
         _service = service;
     }
@@ -18,10 +18,10 @@ public class RaportController : ControllerBase
     [Route("all")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public ActionResult<IEnumerable<RaportDto>> FindAll()
+    public ActionResult<IEnumerable<ReportDto>> FindAll()
     {
-        var raports = _service.FindAll();
+        var reports = _service.FindAll();
         
-        return CreatedAtAction(nameof(FindAll), raports);
+        return CreatedAtAction(nameof(FindAll), reports);
     }
 }

@@ -8,7 +8,7 @@
 		id: '',
 		name: '',
 		surname: '',
-		birthDay: '',
+		birthday: '',
 		sex: 0,
 		isEmployed: false,
 		companyName: '',
@@ -44,7 +44,7 @@
 	}
 
 	$: {
-		isAdult = checkAdult(user.birthDay);
+		isAdult = checkAdult(user.birthday);
 
 		if (isAdult) {
 			user.discriminator = 'Adult';
@@ -85,8 +85,8 @@
 					<Label class="text-right">Birthday</Label>
 					<Input
 						id="birthday"
-						name="birthDay"
-						bind:value={user.birthDay}
+						name="birthday"
+						bind:value={user.birthday}
 						type="date"
 						class="col-span-3"
 						required

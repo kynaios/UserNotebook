@@ -18,7 +18,7 @@ public class UserDto
     
     [Required]
     [BirthdayValidator(ErrorMessage = "Date cannot be from the future")]
-    public DateOnly BirthDay { get; set; }
+    public DateOnly Birthday { get; set; }
     
     [Required]
     public Sex Sex { get; set; }

@@ -10,7 +10,7 @@ public class UserContext : DbContext
     public DbSet<User> Users { get; set; }
     public DbSet<Adult> Adults { get; set; }
     public DbSet<Kid> Kids { get; set; }
-    public DbSet<Raport> Raports { get; set; }
+    public DbSet<Report> Reports { get; set; }
     
     public UserContext(DbContextOptions options) : base(options)
     {
@@ -27,7 +27,7 @@ public class UserContext : DbContext
             .Property(u => u.Sex)
             .HasConversion<int>();
         
-        modelBuilder.Entity<Raport>()
-            .HasNoKey().ToView("raports");
+        modelBuilder.Entity<Report>()
+            .HasNoKey().ToView("reports");
     }
 }

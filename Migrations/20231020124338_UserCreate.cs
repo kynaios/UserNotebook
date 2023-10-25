@@ -18,7 +18,7 @@ namespace UserNotebook.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Surname = table.Column<string>(type: "text", nullable: false),
-                    BirthDay = table.Column<DateOnly>(type: "date", nullable: false),
+                    Birthday = table.Column<DateOnly>(type: "date", nullable: false),
                     Sex = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>

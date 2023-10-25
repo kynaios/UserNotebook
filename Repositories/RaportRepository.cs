@@ -5,17 +5,17 @@ using UserNotebook.Models;
 
 namespace UserNotebook;
 
-public class RaportRepository : IRaportRepository
+public class ReportRepository : IReportRepository
 {
     private readonly UserContext _context;
 
-    public RaportRepository(UserContext context)
+    public ReportRepository(UserContext context)
     {
         _context = context;
     }
 
-    public IEnumerable<Raport> FindAll()
+    public IEnumerable<Report> FindAll()
     {
-        return _context.Raports.AsEnumerable();
+        return _context.Reports.AsEnumerable();
     }
 }

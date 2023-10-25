@@ -2,7 +2,7 @@ using UserNotebook.Dtos;
 
 namespace UserNotebook;
 
-public interface IRaportService
+public interface IReportService
 {
-    public IEnumerable<RaportDto> FindAll();
+    public IEnumerable<ReportDto> FindAll();
 }

@@ -6,21 +6,21 @@ using UserNotebook.Models;
 
 namespace UserNotebook;
 
-public class RaportService : IRaportService
+public class ReportService : IReportService
 {
-    private readonly IRaportRepository _repository;
+    private readonly IReportRepository _repository;
     private readonly IMapper _mapper;
 
-    public RaportService(IRaportRepository repository, IMapper mapper)
+    public ReportService(IReportRepository repository, IMapper mapper)
     {
         _repository = repository;
         _mapper = mapper;
     }
 
-    public IEnumerable<RaportDto> FindAll()
+    public IEnumerable<ReportDto> FindAll()
     {
-        var raports = _repository.FindAll();
+        var reports = _repository.FindAll();
         
-        return _mapper.Map<IEnumerable<Raport>, IEnumerable<RaportDto>>(raports);
+        return _mapper.Map<IEnumerable<Report>, IEnumerable<ReportDto>>(reports);
     }
 }

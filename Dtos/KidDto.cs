@@ -10,12 +10,12 @@ public class KidDto : UserDto
     public double BagWeight { get; set; }
     public String SchoolName { get; set; }
     
-    public KidDto(Guid id, string name, string surname, DateOnly birthDay, Sex sex, double bagWeight, string schoolName)
+    public KidDto(Guid id, string name, string surname, DateOnly birthday, Sex sex, double bagWeight, string schoolName)
     {
         Id = id;
         Name = name;
         Surname = surname;
-        BirthDay = birthDay;
+        Birthday = birthday;
         Sex = sex;
         BagWeight = bagWeight;
         SchoolName = schoolName;

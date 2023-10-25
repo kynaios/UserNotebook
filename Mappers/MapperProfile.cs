@@ -16,8 +16,8 @@ public class MapperProfile : Profile
         CreateMap<Kid, KidDto>();
         CreateMap<KidDto, Kid>();
         
-        // Raports
-        CreateMap<Raport, RaportDto>();
-        CreateMap<RaportDto, Raport>();
+        // Reports
+        CreateMap<Report, ReportDto>();
+        CreateMap<ReportDto, Report>();
     }
 }
