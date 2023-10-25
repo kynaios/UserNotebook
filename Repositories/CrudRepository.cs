@@ -41,5 +41,6 @@ public class CrudRepository<TUser> : ICrudRepository<TUser> where TUser : User
     {
         var enity = entities.Find(id);
         entities.Remove(enity);
+        _context.SaveChanges();
     }
 }
