@@ -10,23 +10,21 @@ var builder = WebApplication.CreateBuilder(args);
 // Load environment variables (copy .env file)
 var configuration = new ConfigurationBuilder()
     .SetBasePath(Directory.GetCurrentDirectory())
-    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+    .AddJsonFile("appsettings.json", true, true)
     .AddEnvironmentVariables()
     .Build();
 
 var databaseUser = configuration["USER_NOTEBOOK_DATABASE_USER"];
 var databasePassword = configuration["USER_NOTEBOOK_DATABASE_PASSWORD"];
-    
+
 var dataSourceBuilder =
-    new NpgsqlDataSourceBuilder($"Host=localhost; Database=user_notebook; Username={databaseUser}; Password={databasePassword}");
+    new NpgsqlDataSourceBuilder(
+        $"Host=localhost; Database=user_notebook; Username={databaseUser}; Password={databasePassword}");
 var dataSource = dataSourceBuilder.Build();
 
 // Add services to the container.
 // AutoMapper
-var mapper = new MapperConfiguration(c =>
-{
-    c.AddProfile(new MapperProfile());
-}).CreateMapper();
+var mapper = new MapperConfiguration(c => { c.AddProfile(new MapperProfile()); }).CreateMapper();
 builder.Services.AddSingleton(mapper);
 
 // builder.Services.AddTransient<ICrudRepository<Adult>, AdultRepository>();
@@ -41,10 +39,7 @@ builder.Services.AddTransient<IReportService, ReportService>();
 
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy(policy =>
-    {
-        policy.WithOrigins("http://localhost:5173");
-    });
+    options.AddDefaultPolicy(policy => { policy.WithOrigins("http://localhost:5173"); });
 });
 
 builder.Services.AddControllers();
@@ -53,10 +48,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<UserContext>(options =>
-{
-    options.UseNpgsql(dataSource);
-});
+builder.Services.AddDbContext<UserContext>(options => { options.UseNpgsql(dataSource); });
 
 var app = builder.Build();
 

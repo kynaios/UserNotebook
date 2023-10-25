@@ -1,5 +1,3 @@
-using UserNotebook.Models;
-
 namespace UserNotebook;
 
 public interface ICrudRepository<T>

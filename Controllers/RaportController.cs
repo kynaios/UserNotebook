@@ -13,7 +13,7 @@ public class ReportController : ControllerBase
     {
         _service = service;
     }
-    
+
     [HttpGet]
     [Route("all")]
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -21,7 +21,7 @@ public class ReportController : ControllerBase
     public ActionResult<IEnumerable<ReportDto>> FindAll()
     {
         var reports = _service.FindAll();
-        
+
         return CreatedAtAction(nameof(FindAll), reports);
     }
 }

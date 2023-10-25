@@ -11,11 +11,11 @@ public class MapperProfile : Profile
         // Adult
         CreateMap<Adult, AdultDto>();
         CreateMap<AdultDto, Adult>();
-        
+
         // Kid
         CreateMap<Kid, KidDto>();
         CreateMap<KidDto, Kid>();
-        
+
         // Reports
         CreateMap<Report, ReportDto>();
         CreateMap<ReportDto, Report>();

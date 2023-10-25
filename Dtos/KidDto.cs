@@ -6,10 +6,6 @@ namespace UserNotebook.Models;
 
 public class KidDto : UserDto
 {
-    [GreaterThenZeroValidator(Maximum: 10, ErrorMessage = "Bag weight must be between 0 and 10")]
-    public double BagWeight { get; set; }
-    public String SchoolName { get; set; }
-    
     public KidDto(Guid id, string name, string surname, DateOnly birthday, Sex sex, double bagWeight, string schoolName)
     {
         Id = id;
@@ -20,4 +16,9 @@ public class KidDto : UserDto
         BagWeight = bagWeight;
         SchoolName = schoolName;
     }
+
+    [GreaterThenZeroValidator(10, ErrorMessage = "Bag weight must be between 0 and 10")]
+    public double BagWeight { get; set; }
+
+    public string SchoolName { get; set; }
 }

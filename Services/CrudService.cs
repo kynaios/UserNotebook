@@ -1,13 +1,12 @@
 using AutoMapper;
-using UserNotebook.Dtos;
 using UserNotebook.Models;
 
 namespace UserNotebook;
 
 public class CrudService<TUser, Dto> : ICrudService<TUser, Dto> where TUser : User
 {
-    private readonly ICrudRepository<TUser> _repository;
     private readonly IMapper _mapper;
+    private readonly ICrudRepository<TUser> _repository;
 
     public CrudService(ICrudRepository<TUser> repository, IMapper mapper)
     {

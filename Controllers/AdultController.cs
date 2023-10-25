@@ -9,7 +9,7 @@ public class AdultController : ControllerBase
 {
     private readonly ICrudService<Adult, AdultDto> _service;
 
-    public AdultController(ICrudService<Adult,AdultDto> service)
+    public AdultController(ICrudService<Adult, AdultDto> service)
     {
         _service = service;
     }
@@ -21,10 +21,10 @@ public class AdultController : ControllerBase
     public ActionResult<IEnumerable<AdultDto>> FindAll()
     {
         var adults = _service.FindAll();
-        
+
         return CreatedAtAction(nameof(FindAll), adults);
     }
-    
+
     [HttpGet]
     [Route("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -33,10 +33,10 @@ public class AdultController : ControllerBase
     {
         var guid = Guid.Parse(id);
         var adult = _service.Find(guid);
-        
+
         return CreatedAtAction(nameof(FindAll), adult);
     }
-    
+
     [HttpPost]
     [Route("create")]
     [ProducesResponseType(StatusCodes.Status201Created)]
@@ -46,13 +46,13 @@ public class AdultController : ControllerBase
         if (ModelState.IsValid)
         {
             _service.Save(dto);
-        
+
             return Ok();
         }
 
         return BadRequest(ModelState);
     }
-    
+
     [HttpPut]
     [Route("update")]
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -62,13 +62,13 @@ public class AdultController : ControllerBase
         if (ModelState.IsValid)
         {
             _service.Update(dto);
-        
+
             return Ok();
         }
 
         return BadRequest(ModelState);
     }
-    
+
     [HttpDelete]
     [Route("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -77,7 +77,7 @@ public class AdultController : ControllerBase
     {
         var guid = Guid.Parse(id);
         _service.Delete(guid);
-        
+
         return Ok();
     }
 }

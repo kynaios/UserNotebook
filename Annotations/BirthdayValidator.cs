@@ -9,7 +9,7 @@ public class BirthdayValidator : ValidationAttribute
     public override bool IsValid(object? value)
     {
         var incoming = value as DateOnly?;
-        
+
         return _today.CompareTo(incoming) >= 0;
     }
 }

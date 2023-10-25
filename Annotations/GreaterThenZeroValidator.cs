@@ -15,7 +15,7 @@ public class GreaterThenZeroValidator : ValidationAttribute
     public override bool IsValid(object? value)
     {
         var requestValue = value as double?;
-        
+
         return requestValue < Maximum && requestValue >= Minimum;
     }
 }

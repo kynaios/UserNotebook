@@ -1,5 +1,3 @@
-using UserNotebook.Types;
-
 namespace UserNotebook.Models;
 
 public class Adult : User

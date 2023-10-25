@@ -7,12 +7,6 @@ namespace UserNotebook.Models;
 
 public class AdultDto : UserDto
 {
-    [Required] public bool IsEmployed { get; set; }
-    public String CompanyName { get; set; }
-
-    [GreaterThenZeroValidator(Maximum: double.MaxValue, ErrorMessage = "Value must be greater then 0")]
-    public double Salary { get; set; }
-
     public AdultDto(Guid id, string name, string surname, DateOnly birthday, Sex sex, bool isEmployed,
         string companyName, double salary)
     {
@@ -25,4 +19,10 @@ public class AdultDto : UserDto
         CompanyName = companyName;
         Salary = salary;
     }
+
+    [Required] public bool IsEmployed { get; set; }
+    public string CompanyName { get; set; }
+
+    [GreaterThenZeroValidator(double.MaxValue, ErrorMessage = "Value must be greater then 0")]
+    public double Salary { get; set; }
 }

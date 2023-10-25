@@ -7,7 +7,7 @@ namespace UserNotebook;
 public class CrudRepository<TUser> : ICrudRepository<TUser> where TUser : User
 {
     private readonly UserContext _context;
-    private DbSet<TUser> entities;
+    private readonly DbSet<TUser> entities;
 
     public CrudRepository(UserContext context)
     {
@@ -22,7 +22,7 @@ public class CrudRepository<TUser> : ICrudRepository<TUser> where TUser : User
 
     public TUser Find(Guid id)
     {
-        return entities.SingleOrDefault(x=>x.Id==id);
+        return entities.SingleOrDefault(x => x.Id == id);
     }
 
     public void Save(TUser dto)

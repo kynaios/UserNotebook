@@ -1,5 +1,3 @@
-
-
 using UserNotebook.Context;
 using UserNotebook.Models;
 
