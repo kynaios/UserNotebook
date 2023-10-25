@@ -36,6 +36,8 @@ builder.Services.AddSingleton(mapper);
 
 builder.Services.AddScoped(typeof(ICrudRepository<>), typeof(CrudRepository<>));
 builder.Services.AddScoped(typeof(ICrudService<,>), typeof(CrudService<,>));
+builder.Services.AddTransient<IRaportRepository, RaportRepository>();
+builder.Services.AddTransient<IRaportService, RaportService>();
 
 builder.Services.AddCors(options =>
 {
