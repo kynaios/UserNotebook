@@ -2,7 +2,7 @@
 	import { Label } from '$lib/components/ui/label';
 	export let data;
 
-	const {user} = data
+	const { user } = data;
 </script>
 
 <div class="grid gap-4 py-4">
@@ -20,7 +20,7 @@
 	</div>
 	<div class="grid grid-cols-4 items-center gap-4">
 		<Label class="text-right">Sex</Label>
-		<span class="col-span-3">{user.sex === 0 ? "Male" : "Female"} </span>
+		<span class="col-span-3">{user.sex === 0 ? 'Male' : 'Female'} </span>
 	</div>
 	{#if user.discriminator === 'Adult'}
 		<div class="grid grid-cols-4 items-center gap-4">
