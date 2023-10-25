@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export const load = async () => {
 	const adultsRes = await fetch('http://localhost:5239/Adult/all');
 	const adults = await adultsRes.json();
@@ -21,4 +23,35 @@ export const load = async () => {
 			};
 		})
 	};
+};
+
+export const actions = {
+	default: async ({ request }) => {
+		const data = await request.formData();
+
+		const id = data.get('id');
+		const name = data.get('name');
+		const surname = data.get('surname');
+		const birthDay = data.get('birthDay');
+		const sex = Number.parseInt(data.get('sex'));
+		const isEmployed = data.get('isEmployed') ? true : false;
+		const companyName = isEmployed ? data.get('companyName') : '';
+		const salary = isEmployed ? Number.parseInt(data.get('salary')) : 0;
+
+		const body = {
+			id,
+			name,
+			surname,
+			birthDay,
+			sex,
+			isEmployed,
+			companyName,
+			salary,
+			discriminator: 'Adult'
+		};
+
+		const req = await axios.put('http://localhost:5239/Adult/update', body).catch(function (err) {
+			console.log(err);
+		});
+	}
 };
