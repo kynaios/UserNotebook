@@ -4,6 +4,7 @@
 	import Delete from '../components/icons/Delete.svelte';
 	import EditDialog from '../components/EditDialog.svelte';
 	import View from '../components/icons/View.svelte';
+	import DeleteDialog from '../components/DeleteDialog.svelte';
 
 	export let data;
 
@@ -69,9 +70,7 @@
 				<Table.Cell class="flex gap-4">
 					<View />
 					<EditDialog bind:user />
-					<button>
-						<Delete />
-					</button>
+					<DeleteDialog id={user.id} discriminator={user.discriminator} name="id" />
 				</Table.Cell>
 			</Table.Row>
 		{/each}
