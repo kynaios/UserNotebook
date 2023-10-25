@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using UserNotebook.Annotations;
 using UserNotebook.Types;
 
 namespace UserNotebook.Dtos;
@@ -16,6 +17,7 @@ public class UserDto
     public string Surname { get; set; }
     
     [Required]
+    [BirthdayValidator(ErrorMessage = "Date cannot be from the future")]
     public DateOnly BirthDay { get; set; }
     
     [Required]
