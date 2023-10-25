@@ -18,14 +18,21 @@
 		</Dialog.Header>
 		<form method="POST">
 			<input type="hidden" value={user.id} name="id" />
+			<input type="hidden" value={user.discriminator} name="discriminator" />
 			<div class="grid gap-4 py-4">
 				<div class="grid grid-cols-4 items-center gap-4">
 					<Label class="text-right">Name</Label>
-					<Input id="name" name="name" bind:value={user.name} class="col-span-3" />
+					<Input id="name" name="name" bind:value={user.name} class="col-span-3" required />
 				</div>
 				<div class="grid grid-cols-4 items-center gap-4">
 					<Label class="text-right">Surname</Label>
-					<Input id="surname" name="surname" bind:value={user.surname} class="col-span-3" />
+					<Input
+						id="surname"
+						name="surname"
+						bind:value={user.surname}
+						class="col-span-3"
+						required
+					/>
 				</div>
 				<div class="grid grid-cols-4 items-center gap-4">
 					<Label class="text-right">Birthday</Label>
@@ -35,11 +42,12 @@
 						bind:value={user.birthDay}
 						type="date"
 						class="col-span-3"
+						required
 					/>
 				</div>
 				<div class="grid grid-cols-4 items-center gap-4">
 					<Label class="text-right">Sex</Label>
-					<select name="sex" id="sex">
+					<select name="sex" id="sex" required>
 						<option value={0}>Male</option>
 						<option value={1}>Female</option>
 					</select>

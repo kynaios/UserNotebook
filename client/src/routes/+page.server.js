@@ -30,6 +30,7 @@ export const actions = {
 		const data = await request.formData();
 
 		const id = data.get('id');
+		const discriminator = data.get('discriminator');
 		const name = data.get('name');
 		const surname = data.get('surname');
 		const birthDay = data.get('birthDay');
@@ -37,6 +38,8 @@ export const actions = {
 		const isEmployed = data.get('isEmployed') ? true : false;
 		const companyName = isEmployed ? data.get('companyName') : '';
 		const salary = isEmployed ? Number.parseInt(data.get('salary')) : 0;
+		const schoolName = data.get('schoolName');
+		const bagWeight = Number.parseFloat(data.get('bagWeight'));
 
 		const body = {
 			id,
@@ -47,11 +50,15 @@ export const actions = {
 			isEmployed,
 			companyName,
 			salary,
-			discriminator: 'Adult'
+			discriminator,
+			schoolName,
+			bagWeight
 		};
 
-		const req = await axios.put('http://localhost:5239/Adult/update', body).catch(function (err) {
-			console.log(err);
-		});
+		const req = await axios
+			.put(`http://localhost:5239/${discriminator}/update`, body)
+			.catch(function (err) {
+				console.log(err);
+			});
 	}
 };
