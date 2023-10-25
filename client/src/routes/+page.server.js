@@ -60,5 +60,17 @@ export const actions = {
 			.catch(function (err) {
 				console.log(err);
 			});
+	delete: async ({ request }) => {
+		const data = await request.formData();
+
+		const id = data.get('id');
+		const discriminator = data.get('discriminator');
+
+		const req = await axios
+			.delete(`http://localhost:5239/${discriminator}/${id}`)
+			.then((res) => console.log(res))
+			.catch(function (err) {
+				console.log(err.response.data);
+			});
 	}
 };
