@@ -1,5 +1,12 @@
 version: "3.8"
 
+networks:
+  user_notebook:
+    driver: bridge
+    
+volumes: 
+  postgres:
+
 services:
   postgres:
     container_name: user_notebook_db
@@ -11,3 +18,25 @@ services:
       POSTGRES_DB: user_notebook
       POSTGRES_USER: ${USER_NOTEBOOK_DATABASE_USER}
       POSTGRES_PASSWORD: ${USER_NOTEBOOK_DATABASE_PASSWORD}
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    networks: 
+      - user_notebook
+#  server:
+#    container_name: user_notebook_server
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    restart: unless-stopped
+#    networks: 
+#      - user_notebook
+#  client:
+#    container_name: user_notebook_client
+#    build:
+#      context: client
+#      dockerfile: Dockerfile
+#    restart: unless-stopped
+#    ports:
+#      - 5000:3000
+#    networks:
+#      - user_notebook
