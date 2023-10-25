@@ -11,10 +11,11 @@ public class AdultDto : UserDto
     public bool IsEmployed { get; set; }
     public String CompanyName { get; set; }
     
-    public float Salary { get; set; }
+    public double Salary { get; set; }
     [GreaterThenZeroValidator(Maximum: double.MaxValue, ErrorMessage = "Value must be greater then 0")]
+    public double Salary { get; set; }
 
-    public AdultDto(Guid id, string name, string surname, DateOnly birthDay, Sex sex, bool isEmployed, string companyName, float salary)
+    public AdultDto(Guid id, string name, string surname, DateOnly birthDay, Sex sex, bool isEmployed, string companyName, double salary)
     {
         Id = id;
         Name = name;
@@ -25,4 +26,3 @@ public class AdultDto : UserDto
         CompanyName = companyName;
         Salary = salary;
     }
-}
