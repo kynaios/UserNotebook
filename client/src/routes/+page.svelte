@@ -101,7 +101,7 @@
 					<AddOrEditDialog bind:user action="Update">
 						<Edit />
 					</AddOrEditDialog>
-					<DeleteDialog id={user.id} discriminator={user.discriminator} name="id" />
+					<DeleteDialog id={user.id} discriminator={user.discriminator} />
 				</Table.Cell>
 			</Table.Row>
 		{/each}
