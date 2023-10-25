@@ -3,22 +3,69 @@
 	import * as Dialog from '$lib/components/ui/dialog';
 	import { Input } from '$lib/components/ui/input';
 	import { Label } from '$lib/components/ui/label';
-	import Edit from './icons/Edit.svelte';
 
-	export let user;
+	export let user = {
+		id: '',
+		name: '',
+		surname: '',
+		birthDay: '',
+		sex: 0,
+		isEmployed: false,
+		companyName: '',
+		salary: 0.0,
+		discriminator: 'Adult',
+		schoolName: '',
+		bagWeight: 0.0
+	};
+	export let action;
+
+	let isAdult;
+
+	function checkAdult(birthdate) {
+		const adulthoodAgeThreshold = 18;
+
+		const today = new Date();
+		const birthdayDate = new Date(birthdate);
+
+		const age = today.getFullYear() - birthdayDate.getFullYear();
+
+		if (age > adulthoodAgeThreshold) {
+			return true;
+		} else if (age === adulthoodAgeThreshold) {
+			if (
+				today.getMonth() > birthdayDate.getMonth() ||
+				(today.getMonth() === birthdayDate.getMonth() && today.getDate() >= birthdayDate.getDate())
+			) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	$: {
+		isAdult = checkAdult(user.birthDay);
+
+		if (isAdult) {
+			user.discriminator = 'Adult';
+		} else {
+			user.discriminator = 'Kid';
+		}
+	}
 
 	let open = false;
 </script>
 
 <Dialog.Root bind:open>
-	<Dialog.Trigger><Edit /></Dialog.Trigger>
+	<Dialog.Trigger><slot /></Dialog.Trigger>
 	<Dialog.Content>
 		<Dialog.Header>
-			<Dialog.Title>Edit User</Dialog.Title>
+			<Dialog.Title>{action} User</Dialog.Title>
 		</Dialog.Header>
-		<form method="POST" action="?/edit">
-			<input type="hidden" value={user.id} name="id" />
-			<input type="hidden" value={user.discriminator} name="discriminator" />
+		<form method="POST" action="?/addOrEdit">
+			<input type="hidden" bind:value={action} name="action" />
+			<input type="hidden" bind:value={user.id} name="id" />
+			<input type="hidden" bind:value={user.discriminator} name="discriminator" />
 			<div class="grid gap-4 py-4">
 				<div class="grid grid-cols-4 items-center gap-4">
 					<Label class="text-right">Name</Label>
@@ -111,7 +158,7 @@
 				{/if}
 			</div>
 			<Dialog.Footer>
-				<Button type="submit">Edit User</Button>
+				<Button type="submit">{action} User</Button>
 			</Dialog.Footer>
 		</form>
 	</Dialog.Content>
