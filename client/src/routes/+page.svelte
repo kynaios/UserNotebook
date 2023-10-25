@@ -7,15 +7,39 @@
 	import DeleteDialog from '../components/DeleteDialog.svelte';
 	import Edit from '../components/icons/Edit.svelte';
 	import UserAdd from '../components/icons/UserAdd.svelte';
+	import Export from '../components/icons/Export.svelte';
+	import Papa from 'papaparse';
 
 	export let data;
 
 	const users = [...data.adults, ...data.kids];
+
+	async function exportUsers() {
+		const req = await fetch('http://localhost:5239/Raport/all');
+		const raport = await req.json();
+		const csvContent = Papa.unparse(raport);
+
+		const blob = new Blob([csvContent], { type: 'text/csv' });
+		const url = window.URL.createObjectURL(blob);
+		const a = document.createElement('a');
+		a.style.display = 'none';
+		a.href = url;
+		const timestamp = new Date().toISOString().replace(/[-T:]/g, '').split('.')[0];
+		a.download = `${timestamp}.csv`;
+
+		document.body.appendChild(a);
+		a.click();
+
+		window.URL.revokeObjectURL(url);
+	}
 </script>
 
-<AddOrEditDialog action="Create">
-	<UserAdd />
-</AddOrEditDialog>
+<div class="flex gap-4">
+	<AddOrEditDialog action="Create">
+		<UserAdd />
+	</AddOrEditDialog>
+	<button on:click={exportUsers}><Export /></button>
+</div>
 <Table.Root>
 	<Table.Caption>User Notebook</Table.Caption>
 	<Table.Header>
