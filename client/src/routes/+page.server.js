@@ -29,7 +29,7 @@ export const actions = {
 	addOrEdit: async ({ request }) => {
 		const data = await request.formData();
 
-		const action = data.get('action');
+		const action = data.get('action').toLowerCase();
 		const id = data.get('id');
 		const discriminator = data.get('discriminator');
 		const name = data.get('name');
@@ -56,7 +56,7 @@ export const actions = {
 			bagWeight
 		};
 
-		if (action === 'edit') {
+		if (action === 'update') {
 			const req = await axios
 				.put(`http://localhost:5239/${discriminator}/${action}`, body)
 				.catch(function (err) {
