@@ -16,7 +16,7 @@
 		<Dialog.Header>
 			<Dialog.Title>Edit User</Dialog.Title>
 		</Dialog.Header>
-		<form method="POST">
+		<form method="POST" action="?/edit">
 			<input type="hidden" value={user.id} name="id" />
 			<input type="hidden" value={user.discriminator} name="discriminator" />
 			<div class="grid gap-4 py-4">

@@ -26,7 +26,7 @@ export const load = async () => {
 };
 
 export const actions = {
-	default: async ({ request }) => {
+	edit: async ({ request }) => {
 		const data = await request.formData();
 
 		const id = data.get('id');
@@ -58,8 +58,9 @@ export const actions = {
 		const req = await axios
 			.put(`http://localhost:5239/${discriminator}/update`, body)
 			.catch(function (err) {
-				console.log(err);
+				console.log(err.response.data.errors);
 			});
+	},
 	delete: async ({ request }) => {
 		const data = await request.formData();
 
