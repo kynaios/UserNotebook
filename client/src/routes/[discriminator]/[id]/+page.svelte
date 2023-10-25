@@ -31,7 +31,7 @@
 			>
 				Employed?
 			</Label>
-			<span class="col-span-3">{user.isEmployed === true ? 'Yes' : No} </span>
+			<span class="col-span-3">{user.isEmployed === true ? 'Yes' : 'No'} </span>
 		</div>
 
 		{#if user.isEmployed}

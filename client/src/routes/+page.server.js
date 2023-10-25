@@ -57,7 +57,7 @@ export const actions = {
 		};
 
 		if (action === 'update') {
-			const req = await axios
+			await axios
 				.put(`http://localhost:5239/${discriminator}/${action}`, body)
 				.catch(function (err) {
 					console.log(err.response.data.errors);
@@ -65,7 +65,7 @@ export const actions = {
 		} else {
 			delete body.id;
 
-			const req = await axios
+			await axios
 				.post(`http://localhost:5239/${discriminator}/${action}`, body)
 				.catch(function (err) {
 					console.log(err.response.data.errors);
@@ -78,7 +78,7 @@ export const actions = {
 		const id = data.get('id');
 		const discriminator = data.get('discriminator');
 
-		const req = await axios
+		await axios
 			.delete(`http://localhost:5239/${discriminator}/${id}`)
 			.then((res) => console.log(res))
 			.catch(function (err) {
