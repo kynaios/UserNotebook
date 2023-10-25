@@ -26,9 +26,10 @@ export const load = async () => {
 };
 
 export const actions = {
-	edit: async ({ request }) => {
+	addOrEdit: async ({ request }) => {
 		const data = await request.formData();
 
+		const action = data.get('action');
 		const id = data.get('id');
 		const discriminator = data.get('discriminator');
 		const name = data.get('name');
@@ -55,11 +56,21 @@ export const actions = {
 			bagWeight
 		};
 
-		const req = await axios
-			.put(`http://localhost:5239/${discriminator}/update`, body)
-			.catch(function (err) {
-				console.log(err.response.data.errors);
-			});
+		if (action === 'edit') {
+			const req = await axios
+				.put(`http://localhost:5239/${discriminator}/${action}`, body)
+				.catch(function (err) {
+					console.log(err.response.data.errors);
+				});
+		} else {
+			delete body.id;
+
+			const req = await axios
+				.post(`http://localhost:5239/${discriminator}/${action}`, body)
+				.catch(function (err) {
+					console.log(err.response.data.errors);
+				});
+		}
 	},
 	delete: async ({ request }) => {
 		const data = await request.formData();

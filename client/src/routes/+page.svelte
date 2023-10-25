@@ -2,15 +2,20 @@
 	import * as Table from '$lib/components/ui/table';
 	import Check from '../components/icons/Check.svelte';
 	import Delete from '../components/icons/Delete.svelte';
-	import EditDialog from '../components/EditDialog.svelte';
+	import AddOrEditDialog from '../components/AddOrEditDialog.svelte';
 	import View from '../components/icons/View.svelte';
 	import DeleteDialog from '../components/DeleteDialog.svelte';
+	import Edit from '../components/icons/Edit.svelte';
+	import UserAdd from '../components/icons/UserAdd.svelte';
 
 	export let data;
 
 	const users = [...data.adults, ...data.kids];
 </script>
 
+<AddOrEditDialog action="Create">
+	<UserAdd />
+</AddOrEditDialog>
 <Table.Root>
 	<Table.Caption>User Notebook</Table.Caption>
 	<Table.Header>
@@ -69,7 +74,9 @@
 				{/if}
 				<Table.Cell class="flex gap-4">
 					<View />
-					<EditDialog bind:user />
+					<AddOrEditDialog bind:user action="Update">
+						<Edit />
+					</AddOrEditDialog>
 					<DeleteDialog id={user.id} discriminator={user.discriminator} name="id" />
 				</Table.Cell>
 			</Table.Row>
