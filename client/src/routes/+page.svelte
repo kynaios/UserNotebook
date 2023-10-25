@@ -1,7 +1,6 @@
 <script>
 	import * as Table from '$lib/components/ui/table';
 	import Check from '../components/icons/Check.svelte';
-	import Delete from '../components/icons/Delete.svelte';
 	import AddOrEditDialog from '../components/AddOrEditDialog.svelte';
 	import View from '../components/icons/View.svelte';
 	import DeleteDialog from '../components/DeleteDialog.svelte';
