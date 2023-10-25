@@ -14,7 +14,7 @@
 	const users = [...data.adults, ...data.kids];
 
 	async function exportUsers() {
-		const req = await fetch('http://localhost:5239/Report/all');
+		const req = await fetch('http://server/Report/all');
 		const report = await req.json();
 		const csvContent = Papa.unparse(report);
 

@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 export const load = async () => {
-	const adultsRes = await fetch('http://localhost:5239/Adult/all');
+	const adultsRes = await fetch('http://server/Adult/all');
 	const adults = await adultsRes.json();
-	const kidsRes = await fetch('http://localhost:5239/Kid/all');
+	const kidsRes = await fetch('http://server/Kid/all');
 	const kids = await kidsRes.json();
 
 	return {
@@ -57,19 +57,15 @@ export const actions = {
 		};
 
 		if (action === 'update') {
-			await axios
-				.put(`http://localhost:5239/${discriminator}/${action}`, body)
-				.catch(function (err) {
-					console.log(err.response.data.errors);
-				});
+			await axios.put(`http://server/${discriminator}/${action}`, body).catch(function (err) {
+				console.log(err.response.data.errors);
+			});
 		} else {
 			delete body.id;
 
-			await axios
-				.post(`http://localhost:5239/${discriminator}/${action}`, body)
-				.catch(function (err) {
-					console.log(err.response.data.errors);
-				});
+			await axios.post(`http://server/${discriminator}/${action}`, body).catch(function (err) {
+				console.log(err.response.data.errors);
+			});
 		}
 	},
 	delete: async ({ request }) => {
@@ -79,7 +75,7 @@ export const actions = {
 		const discriminator = data.get('discriminator');
 
 		await axios
-			.delete(`http://localhost:5239/${discriminator}/${id}`)
+			.delete(`http://server/${discriminator}/${id}`)
 			.then((res) => console.log(res))
 			.catch(function (err) {
 				console.log(err.response.data);
