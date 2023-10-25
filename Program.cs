@@ -14,12 +14,13 @@ var configuration = new ConfigurationBuilder()
     .AddEnvironmentVariables()
     .Build();
 
+var databaseHost = configuration["USER_NOTEBOOK_HOST"];
 var databaseUser = configuration["USER_NOTEBOOK_DATABASE_USER"];
 var databasePassword = configuration["USER_NOTEBOOK_DATABASE_PASSWORD"];
 
 var dataSourceBuilder =
     new NpgsqlDataSourceBuilder(
-        $"Host=localhost; Database=user_notebook; Username={databaseUser}; Password={databasePassword}");
+        $"Host={databaseHost}; Database=user_notebook; Username={databaseUser}; Password={databasePassword}");
 var dataSource = dataSourceBuilder.Build();
 
 // Add services to the container.
@@ -39,7 +40,7 @@ builder.Services.AddTransient<IReportService, ReportService>();
 
 builder.Services.AddCors(options =>
 {
-    options.AddDefaultPolicy(policy => { policy.WithOrigins("http://localhost:5173"); });
+    options.AddDefaultPolicy(policy => { policy.WithOrigins("http://localhost:5173", "http://localhost:5000"); });
 });
 
 builder.Services.AddControllers();
@@ -49,7 +50,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<UserContext>(options => { options.UseNpgsql(dataSource); });
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
