@@ -73,7 +73,7 @@
 					<Table.Cell />
 				{/if}
 				<Table.Cell class="flex gap-4">
-					<View />
+					<a href={`/${user.discriminator}/${user.id}`}><View /></a>
 					<AddOrEditDialog bind:user action="Update">
 						<Edit />
 					</AddOrEditDialog>
