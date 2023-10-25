@@ -6,5 +6,5 @@ public class Adult : User
 {
     public bool IsEmployed { get; set; }
     public string CompanyName { get; set; }
-    public float Salary { get; set; }
+    public double Salary { get; set; }
 }
